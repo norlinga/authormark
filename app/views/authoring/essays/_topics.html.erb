@@ -1,0 +1,5 @@
+<ul id="topic-panel" data-controller="topic-panel" data-essay-id="<%= @essay.id %>">
+  <% @topics.each do |topic| %>
+    <%= render partial: "authoring/essays/topic_row", formats: [:html], locals: { topic: topic, essay: @essay } %>
+  <% end %>
+</ul>

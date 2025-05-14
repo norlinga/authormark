@@ -1,0 +1,64 @@
+<h3 class="text-lg font-semibold">Editing Essay</h3>
+
+<div class="grid grid-cols-5 gap-8 items-start">
+  <%= form_with model: [:authoring, @essay], local: true, class: "contents" do |f| %>
+    <!-- Left: Body editor (60%) -->
+    <div class="col-span-3">
+      <div class="mb-2">
+        <%= f.label :body, class: "hidden" %>
+        <%= f.text_area :body, rows: 30, class: "mt-1 block w-full border rounded shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    </div>
+
+    <!-- Right: Metadata, buttons, and topics (40%) -->
+    <div class="col-span-2">
+      <!-- Metadata and Save/Cancel -->
+      <div class="space-y-6">
+        <!-- Save/Cancel -->
+        <div class="flex gap-2">
+          <%= f.submit "Save", class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+          <%= link_to "Cancel", authoring_essays_path, class: "px-4 py-2 border rounded text-gray-700 hover:text-black" %>
+        </div>
+
+        <!-- Metadata Fields -->
+        <div>
+          <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :title, class: "mt-1 block w-full rounded border-gray-300 shadow-sm" %>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-500">Slug (auto-generated)</label>
+          <p class="mt-1 text-gray-600 text-sm bg-gray-100 px-2 py-1 rounded"><%= @essay.slug %></p>
+        </div>
+
+        <div>
+          <%= f.label :system_slug, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :system_slug, class: "mt-1 block w-full rounded border-gray-300 shadow-sm" %>
+        </div>
+
+        <div>
+          <%= f.label :first_published_at, "Published At", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.datetime_select :first_published_at, include_blank: true, class: "mt-1" %>
+        </div>
+
+        <div class="flex items-center">
+          <%= f.check_box :visible, class: "mr-2" %>
+          <%= f.label :visible, "Publicly visible", class: "text-sm text-gray-700" %>
+        </div>
+      </div>
+
+      <!-- Topics (outside form submission, visually in right column) -->
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold">Topics</h3>
+
+        <%= render "topics" %>
+      </div>
+
+      <!-- Custom Liquid Tags List -->
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold">Custom Liquid Tags</h3>
+        <p class="text-sm text-gray-500">Available custom liquid tags:</p>
+        <%= render "custom_liquid_tags_list" %>
+    </div>
+  <% end %>
+</div>

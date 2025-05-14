@@ -1,0 +1,34 @@
+<h1 class="text-2xl mb-6">Topics</h1>
+
+<%= form_with model: @topic, url: authoring_topics_path, local: true do |f| %>
+  <div class="flex gap-4 items-end mb-6">
+    <div>
+      <%= f.label :title, "New Topic", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :title, class: "mt-1 block w-full rounded border-gray-300 shadow-sm" %>
+    </div>
+    <div>
+      <%= f.submit "Add", class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+    </div>
+  </div>
+<% end %>
+
+<ul class="space-y-2 w-1/2">
+  <% @topics.each do |topic| %>
+    <turbo-frame id="topic_<%= topic.id %>">
+      <li class="flex justify-between items-center p-3 rounded">
+        <div>
+          <span class="font-semibold"><%= topic.title %></span>
+          <span class="text-sm text-gray-500">(<%= topic.slug %>, <%= topic.essays_count %> essays)</span>
+        </div>
+
+        <%= button_to authoring_topic_path(topic),
+              method: :delete,
+              data: { turbo_confirm: "Are you sure you want to delete this topic?" },
+              form: { data: { turbo_frame: "topic_#{topic.id}" } },
+              class: "text-red-600 hover:text-red-800" do %>
+          <%= render "shared/heroicons/minus_circle" %>
+        <% end %>
+      </li>
+    </turbo-frame>
+  <% end %>
+</ul>

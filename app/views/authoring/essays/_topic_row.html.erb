@@ -1,0 +1,9 @@
+<% topic_presenter = EssayTopicPresenter.new(essay: essay, topic: topic, view: self) %>
+
+<li class="flex items-center justify-between p-1 rounded-md mb-1" data-topic-id="<%= topic_presenter.topic_id %>">
+  <span class="<%= topic_presenter.title_class %>"><%= topic_presenter.title %></span>
+
+  <div class="flex gap-2">
+    <%= safe_join(topic_presenter.action_buttons) %>
+  </div>
+</li>

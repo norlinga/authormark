@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Authormark" %></title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="mx-auto px-10 py-4">
+      <header class="flex gap-4 my-4">
+        <%= render "shared/heroicons/wrench_screwdriver" %>
+        <h1 class="text-xl font-light text-gray-500">Authoring Site: <%= site_title %> </h1>
+      </header>
+
+      <div>
+        <p>
+          Return to the <%= link_to "main site", home_page_path, class: "text-blue-500 hover:text-blue-700" %>
+        </p>
+      </div>
+
+      <nav class="flex gap-4 py-4">
+        <%= link_to "Essays", authoring_essays_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Topics", authoring_topics_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Settings", edit_authoring_settings_path, class: "text-blue-500 hover:text-blue-700" %>
+        <%= link_to "Images", authoring_images_path, class: "text-blue-500 hover:text-blue-700" %>
+      </nav>
+
+      <section class="mx-auto">
+        <div class="max-w-none">
+          <%= yield %>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

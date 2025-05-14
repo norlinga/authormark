@@ -1,0 +1,5 @@
+<ul class="text-sm list-disc ml-5">
+  <% LiquidEnv.instance.tags.select { |_name, klass| klass.name&.end_with?("Tag") }.keys.sort.each do |tag| %>
+    <li><code>{% <%= tag %> %}</code></li>
+  <% end %>
+</ul>

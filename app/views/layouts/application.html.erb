@@ -2,6 +2,11 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Authormark" %></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,7 +27,40 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="font-lora-normal bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 dark:font-lora-medium pb-4">
+    <div class="
+      mx-auto
+      max-w-2xl sm:max-w-3xl md:max-w-4xl
+      bg-white dark:bg-gray-800
+      rounded-lg shadow-md
+      sm:p-8
+      sm:bg-white sm:dark:bg-gray-800
+      sm:rounded-lg
+      sm:shadow-md
+      mt-4
+      p-2
+    ">
+      <header class="flex gap-8 my-4">
+        <h1 class="text-xl font-light text-gray-500"><%= site_title %></h1>
+
+        <%= topic_context_link_icon do %>
+          <%= render "shared/heroicons/queue_list" %>
+        <% end %>
+
+        <%= home_link_icon do %>
+          <%= render "shared/heroicons/modern_home" %>
+        <% end %>
+      </header>
+
+      <article class="mx-auto py-8">
+        <div class="prose prose-md dark:prose-invert max-w-none">
+          <%= yield %>
+        </div>
+      </article>
+
+      <footer class="text-gray-500 dark:text-gray-400 mt-4">
+        <p><%= raw copyright_text %></p>
+      </footer>
+    </div>
   </body>
 </html>
