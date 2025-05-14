@@ -41,7 +41,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   gem "rspec", "~> 3.13"
-  gem "rspec-rails", "~> 7.1"
+  gem "rspec-rails", "~> 8.0"
   gem "factory_bot", "~> 6.5"
   gem "guard", "~> 2.19"
   gem "guard-rspec", "~> 4.7"
