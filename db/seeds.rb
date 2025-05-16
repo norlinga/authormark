@@ -14,7 +14,7 @@ Essay.find_or_create_by(title: "A First Step in a Testing Journey") do |essay|
   essay.first_published_at = Time.zone.now
 end
 
-topics = [ 'ruby', 'rails', 'testing', 'Moar Stuff to Do' ]
+topics = [ 'ruby', 'rails', 'testing' ]
 topics.each do |topic_name|
   Topic.find_or_create_by(title: topic_name)
 end
