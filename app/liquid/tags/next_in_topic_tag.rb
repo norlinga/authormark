@@ -1,18 +1,22 @@
-class NextInTopicTag < Liquid::Tag
-  def render(context)
-    essay = context.registers[:essay]
+# frozen_string_literal: true
 
-    return "" unless essay.is_a?(Essay) && essay.primary_topic
+module Tags
+  class NextInTopicTag < Liquid::Tag
+    def render(context)
+      essay = context.registers[:essay]
 
-    next_essay = Essay
-      .listable
-      .where(primary_topic: essay.primary_topic)
-      .where("first_published_at > ?", essay.first_published_at)
-      .order(first_published_at: :asc)
-      .first
+      return "" unless essay.is_a?(Essay) && essay.primary_topic
 
-    return "" unless next_essay
+      next_essay = Essay
+        .listable
+        .where(primary_topic: essay.primary_topic)
+        .where("first_published_at > ?", essay.first_published_at)
+        .order(first_published_at: :asc)
+        .first
 
-    "[#{next_essay.title} →](#{Rails.application.routes.url_helpers.essay_page_path(slug: next_essay.slug)})"
+      return "" unless next_essay
+
+      "[#{next_essay.title} →](#{Rails.application.routes.url_helpers.essay_page_path(slug: next_essay.slug)})"
+    end
   end
 end
