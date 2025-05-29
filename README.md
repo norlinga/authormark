@@ -1,6 +1,6 @@
 # Authormark ✍️
 
-A modern, opinionated publishing platform built with Ruby on Rails 8, designed for long-form technical writing.
+A ~~modern~~, ~~arcade~~, _different_, highly opinionated publishing platform built with Ruby on Rails 8, designed for long-form technical writing.
 
 **Authormark** is tailored for solo authors who value simplicity, clarity, and total control over their content. Built as a personal project, it combines familiar Rails conventions with tooling like [Liquid](https://shopify.github.io/liquid/) and [Commonmarker](https://github.com/gjtorikian/commonmarker) for dynamic, Markdown-first content authoring. The result is a clean, focused stack that’s ideal for technical essays, guides, and reference material.
 
