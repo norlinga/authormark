@@ -35,6 +35,10 @@ module ApplicationHelper
     SiteSetting["copyright_text"] || "© #{Time.current.year}"
   end
 
+  def header_content
+    SiteSetting["header_content"] || "Welcome to My Site"
+  end
+
   private
 
   def show_home_icon?
