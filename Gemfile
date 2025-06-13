@@ -46,7 +46,7 @@ group :development, :test do
   gem "guard", "~> 2.19"
   gem "guard-rspec", "~> 4.7"
   gem "shoulda-matchers", "~> 6.5"
-  gem "factory_bot_rails", "~> 6.4"
+  gem "factory_bot_rails", "~> 6.5"
   gem "faker", "~> 3.5"
   gem "rubocop-rails-omakase", require: false
 
